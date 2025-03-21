@@ -1,0 +1,156 @@
+.pomodoro-clock {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.pomodoro-clock h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.settings label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
+
+.timer {
+  margin-bottom: 20px;
+}
+
+.timer-display {
+  font-size: 48px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+.timer-display.work {
+  background-color: #007bff;
+}
+
+.timer-display.break {
+  background-color: #28a745;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #007bff;
+  transition: width 1s linear;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.controls button:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.round-info {
+  margin-top: 20px;
+  color: #333;
+}
+
+.task-manager {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.task-manager h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.task-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.task-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.task-input button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-input button:hover {
+  background-color: #0056b3;
+}
+
+.task-manager ul {
+  list-style: none;
+  padding: 0;
+}
+
+.task-manager li {
+  padding: 5px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.history {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.history h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history li {
+  padding: 5px 0;
+  border-bottom: 1px solid #dee2e6;
+}
