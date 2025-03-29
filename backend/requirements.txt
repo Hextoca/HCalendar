@@ -1,4 +1,4 @@
-flask==2.0.1
-flask-cors==3.0.10
+flask
+flask-cors
 python-dateutil==2.8.2
-werkzeug==2.0.1 
+werkzeug==2.0.1

@@ -1,3 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.35s;
+}
+
+body {
+    margin: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: white;
+}
+
+:root {
+    --body-bg: #e8f6ff;
+    --border-radius: 12px;
+    --border: 2px solid #33322E;
+    --box-shadow: 4px 4px 0px #33322E;
+    --box-shadow-reverse: -4px 4px 0px #33322E;
+    --padding: 20px 24px;
+    --btn-padding: 12px 24px;
+    --btn-small-padding: 10px 20px;
+    --font: "DM Sans", "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif, HYWenHei-GEW !important;
+    --font-color: #33322E;
+    --font-size-base: 16px;
+    --placeholder: rgba(51, 50, 46, 0.535);
+    --font-color-complete: rgba(51, 50, 46, 0.535);
+    --bg-normal: #F9F3E5;
+    --bg-submit: #ffd6e9;
+    --bg-completed: #D0F4F0;
+    --bg-discard: #FFF0EE;
+    --bg-deleted: #ddd;
+    --bg-edit: #fbeef3;
+    --normal: #f5d99e;
+    --completed: #8CD4CB;
+    --deleted: #F6A89E;
+    --black: #33322E;
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    font-family: var(--font);
+    background: var(--body-bg);
+    font-size: var(--font-size-base);
+    color: var(--font-color);
+    box-sizing: border-box;
+}
+
+html ::-webkit-scrollbar {
+    display: none;
+}
+
+.side-bar {
+    position: fixed; /* Changed to fixed to ensure visibility */
+    right: 20px; /* Adjusted to align it within the viewport */
+    top: 20px; /* Added top positioning */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    border: var(--border);
+    background: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: all 0.3s;
+    overflow: hidden;
+    z-index: 999; /* Ensure it appears above other elements */
+    padding: 10px; /* Added padding for better visibility */
+}
+
 .todo-list {
   padding: 20px;
   background-color: white;

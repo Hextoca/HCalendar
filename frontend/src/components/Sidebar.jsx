@@ -33,6 +33,9 @@ const Sidebar = ({ view, onViewChange }) => {
         <button className="view-button" onClick={() => onViewChange('pomodoro')}>
           番茄钟
         </button>
+        <button className="view-button" onClick={() => onViewChange('mindmap')}> {/* Add button for Mind Map */}
+          思维导图
+        </button>
       </div>
     </div>
   );

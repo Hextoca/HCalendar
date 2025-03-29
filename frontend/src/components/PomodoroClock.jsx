@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PomodoroClock.css';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const PomodoroClock = () => {
   const [workTime, setWorkTime] = useState(25 * 60);
@@ -87,33 +89,158 @@ const PomodoroClock = () => {
     <div className="pomodoro-clock">
       <h3>番茄钟</h3>
       <div className="settings">
-        <label>
-          工作时间（分钟）:
-          <input type="number" value={workTime / 60} onChange={(e) => setWorkTime(e.target.value * 60)} />
-        </label>
-        <label>
-          休息时间（分钟）:
-          <input type="number" value={breakTime / 60} onChange={(e) => setBreakTime(e.target.value * 60)} />
-        </label>
-        <label>
-          长休息时间（分钟）:
-          <input type="number" value={longBreakTime / 60} onChange={(e) => setLongBreakTime(e.target.value * 60)} />
-        </label>
+        <div className="row mt-4">
+          <div
+            className="col-12 text-secondary"
+            align="center"
+            style={{ fontFamily: 'SimHei, Arial, sans-serif', fontSize: '18px', color: '#000' }}
+          >
+            工作时间（分钟）:
+            <input
+              className="rounded rounded-pill text-secondary"
+              style={{
+                textAlign: 'center',
+                border: '1px solid #DDDDDD',
+                fontSize: '18px',
+                width: '100px',
+                height: '40px',
+                color: '#000', // Ensure font color is black
+              }}
+              value={workTime / 60}
+              onChange={(e) => {
+                const newWorkTime = e.target.value * 60;
+                setWorkTime(newWorkTime);
+                if (isWork && !isRunning) {
+                  setTimeLeft(newWorkTime);
+                }
+              }}
+            />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            休息时间（分钟）:
+            <input
+              className="rounded rounded-pill text-secondary"
+              style={{
+                textAlign: 'center',
+                border: '1px solid #DDDDDD',
+                fontSize: '18px',
+                width: '100px',
+                height: '40px',
+                color: '#000', // Ensure font color is black
+              }}
+              value={breakTime / 60}
+              onChange={(e) => setBreakTime(e.target.value * 60)}
+            />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            长休息时间（分钟）:
+            <input
+              className="rounded rounded-pill text-secondary"
+              style={{
+                textAlign: 'center',
+                border: '1px solid #DDDDDD',
+                fontSize: '18px',
+                width: '100px',
+                height: '40px',
+                color: '#000', // Ensure font color is black
+              }}
+              value={longBreakTime / 60}
+              onChange={(e) => setLongBreakTime(e.target.value * 60)}
+            />
+          </div>
+        </div>
       </div>
       <div className="timer">
-        <div className={`timer-display ${isWork ? 'work' : 'break'}`}>
-          {formatTime(timeLeft)}
-        </div>
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${((isWork ? workTime : (round + 1) % 4 === 0 ? longBreakTime : breakTime) - timeLeft) / (isWork ? workTime : (round + 1) % 4 === 0 ? longBreakTime : breakTime) * 100}%` }}
-          ></div>
+        <div className="timer-display">
+          <CircularProgressbar
+            value={((isWork ? workTime : (round + 1) % 4 === 0 ? longBreakTime : breakTime) - timeLeft) / (isWork ? workTime : (round + 1) % 4 === 0 ? longBreakTime : breakTime) * 100}
+            text={formatTime(timeLeft)}
+            styles={buildStyles({
+              textColor: '#000',
+              pathColor: isWork ? '#0000FF' : '#4caf50',
+              trailColor: '#d6d6d6',
+            })}
+          />
         </div>
         <div className="controls">
-          <button onClick={handleStart} disabled={isRunning}>开始</button>
-          <button onClick={handlePause} disabled={!isRunning}>暂停</button>
-          <button onClick={handleStop}>停止</button>
+          <div className="row justify-content-center">
+            <div className="col-12 mb-4">
+              <span
+                className="btn btn-outline-secondary"
+                id="start_button"
+                onClick={handleStart}
+                role="button"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  borderRadius: '50px',
+                  border: '2px solid #000',
+                  color: '#000',
+                  textAlign: 'center',
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '400',
+                  lineHeight: '1.5',
+                  cursor: 'pointer',
+                  transition: 'box-shadow 0.3s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.target.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.2)')}
+                onMouseLeave={(e) => (e.target.style.boxShadow = 'none')}
+              >
+                开始番茄
+              </span>
+            </div>
+            <div className="col-12 mb-4">
+              <span
+                className="btn btn-outline-secondary"
+                id="pause_button"
+                onClick={handlePause}
+                role="button"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  borderRadius: '50px',
+                  border: '2px solid #000',
+                  color: '#000',
+                  textAlign: 'center',
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '400',
+                  lineHeight: '1.5',
+                  cursor: 'pointer',
+                  transition: 'box-shadow 0.3s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.target.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.2)')}
+                onMouseLeave={(e) => (e.target.style.boxShadow = 'none')}
+              >
+                暂停
+              </span>
+            </div>
+            <div className="col-12">
+              <span
+                className="btn btn-outline-secondary"
+                id="stop_button"
+                onClick={handleStop}
+                role="button"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  borderRadius: '50px',
+                  border: '2px solid #000',
+                  color: '#000',
+                  textAlign: 'center',
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '400',
+                  lineHeight: '1.5',
+                  cursor: 'pointer',
+                  transition: 'box-shadow 0.3s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.target.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.2)')}
+                onMouseLeave={(e) => (e.target.style.boxShadow = 'none')}
+              >
+                停止
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <div className="round-info">

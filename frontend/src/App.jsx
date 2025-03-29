@@ -3,6 +3,8 @@ import CalendarViews from './components/CalendarViews';
 import Sidebar from './components/Sidebar';
 import TodoList from './components/TodoList';
 import PomodoroClock from './components/PomodoroClock';
+import BackgroundCanvas from './components/BackgroundCanvas';
+import MindMap from './components/MindMap'; // Import the MindMap component
 import './App.css';
 
 function App() {
@@ -158,7 +160,8 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ color: '#000' }}> {/* Set font color to black globally */}
+      <BackgroundCanvas />
       <Sidebar
         currentView={currentView}
         onViewChange={setCurrentView}
@@ -176,6 +179,8 @@ function App() {
             <TodoList />
           ) : currentView === 'pomodoro' ? (
             <PomodoroClock />
+          ) : currentView === 'mindmap' ? ( // Add condition for Mind Map view
+            <MindMap />
           ) : (
             <CalendarViews
               view={currentView}
